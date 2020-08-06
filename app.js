@@ -6,7 +6,11 @@ const users = require('./routes/users');
 
 const { PORT = 3000, DATABASE_URL = 'mongodb://localhost/mestodb' } = process.env;
 
-mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(DATABASE_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
 
 const notFoundHandler = (res) => res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
 
