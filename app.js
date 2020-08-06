@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -25,6 +26,7 @@ app
     next();
   })
   .use('/', cards, users)
+  .use(express.static(path.join(__dirname, 'public')))
   .use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     if (err instanceof mongoose.Error.DocumentNotFoundError) {
       notFoundHandler(res);
