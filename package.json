@@ -1,7 +1,7 @@
 {
-  "name": "12sprint",
+  "name": "13sprint",
   "version": "0.0.1",
-  "description": "Проектная работа 12",
+  "description": "Проектная работа 13",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -29,6 +29,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
-    "mongoose": "^5.9.27"
+    "mongoose": "^5.9.27",
+    "mongoose-type-url": "^2.0.0"
   }
 }

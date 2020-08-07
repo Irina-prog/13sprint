@@ -18,14 +18,23 @@ async function createUser(req, res) {
   res.send(user);
 }
 
-// обновляет информацию о профиле, включая аватар
 async function updateUser(req, res) {
-  const user = await User
-    .findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true })
-    .orFail();
+  const { name, about } = req.body;
+  const user = await User.findById(req.user._id).orFail();
+  user.name = name;
+  user.about = about;
+  await user.save();
+  res.send(user);
+}
+
+async function updateAvatar(req, res) {
+  const { avatar } = req.body;
+  const user = await User.findById(req.user._id).orFail();
+  user.avatar = avatar;
+  await user.save();
   res.send(user);
 }
 
 module.exports = {
-  listUsers, getUser, createUser, updateUser,
+  listUsers, getUser, createUser, updateUser, updateAvatar,
 };
