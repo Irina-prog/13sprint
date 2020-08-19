@@ -1,15 +1,15 @@
-const path = require('path');
 const { Router } = require('express');
-const loadJson = require('../json');
+const asyncHandler = require('express-async-handler');
+const {
+  listCards, deleteCard, createCard, addLike, removeLike,
+} = require('../controllers/cards');
 
 const router = new Router();
 
-router.get('/cards', (req, res) => {
-  loadJson(path.join(__dirname, '..', 'data', 'cards.json')).then((cards) => {
-    res.send(cards);
-  }, () => {
-    res.status(503).send({ mesage: 'Ошибка чтения cards.json' });
-  });
-});
+router.get('/cards', asyncHandler(listCards));
+router.post('/cards', asyncHandler(createCard));
+router.delete('/cards/:id', asyncHandler(deleteCard));
+router.put('/cards/:id/likes', asyncHandler(addLike));
+router.delete('/cards/:id/likes', asyncHandler(removeLike));
 
 module.exports = router;
